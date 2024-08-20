@@ -26,9 +26,17 @@ task sourcesJar(type: Jar, dependsOn: 'classes') {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "cruGlobalMavenRepository"
+            setUrl("https://cruglobal.jfrog.io/artifactory/maven-cru-mobile-forks-local/")
+            credentials(PasswordCredentials)
+        }
+    }
+
     publications {
         library(MavenPublication) {
-            groupId 'dk.ilios'
+            groupId 'org.cru.mobile.fork.dk.ilios'
             artifactId 'realmfieldnameshelper'
             version version
             from components.java
